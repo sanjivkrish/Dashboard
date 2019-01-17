@@ -165,6 +165,11 @@ const styles = theme => ({
   tableWrapper: {
     overflowX: 'auto',
   },
+  row: {
+    '&:nth-of-type(odd)': {
+      backgroundColor: theme.palette.background.default,
+    },
+  },
 });
 
 class EnhancedTable extends React.Component {
@@ -226,14 +231,15 @@ class EnhancedTable extends React.Component {
                       hover
                       tabIndex={-1}
                       key={n.match_id}
+                      className={classes.row}
                     >
                       <TableCell component="th" scope="row" padding="default">
                         {n.match_id}
                       </TableCell>
                       <TableCell align="center">{n.league_name}</TableCell>
-                      <TableCell align="center">{n.radiant_name} <b> VS </b> {n.dire_name}</TableCell>
+                      <TableCell align="center">{n.radiant_name || 'NULL'} <b> VS </b> {n.dire_name || 'NULL'}</TableCell>
                       <TableCell align="center">{n.duration}</TableCell>
-                      <TableCell align="center">{n.radiant_win?n.radiant_name:n.dire_name}  ({n.radiant_score} - {n.dire_score})</TableCell>
+                      <TableCell align="center">{n.radiant_win?n.radiant_name||'NULL':n.dire_name||'NULL'}  ({n.radiant_score} - {n.dire_score})</TableCell>
                     </TableRow>
                   );
                 })}
